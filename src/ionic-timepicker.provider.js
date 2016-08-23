@@ -5,6 +5,7 @@ angular.module('ionic-timepicker.provider', [])
     var config = {
       setLabel: 'Set',
       closeLabel: 'Close',
+      noValueLabel: '',
       inputTime: (((new Date()).getHours() * 60 * 60) + ((new Date()).getMinutes() * 60)),
       format: 12,
       step: 15
@@ -137,6 +138,16 @@ angular.module('ionic-timepicker.provider', [])
             $scope.mainObj.callback(totalSec);
           }
         });
+
+        if($scope.mainObj.noValueLabel) {
+          buttons.push({
+            text: $scope.mainObj.noValueLabel,
+            type: 'button_no_value',
+            onTap: function (e) {
+              $scope.mainObj.callback(null);
+            }
+          });
+        }
 
         buttons.push({
           text: $scope.mainObj.closeLabel,
